@@ -1,17 +1,17 @@
 class BooksController < ApplicationController
 
-  def new
+
+  def index
     @book = Book.new
+    @books = Book.all
   end
 
   def create
     book = Book.new(book_params)
-    book.save
-    redirect_to "/books"
+  	book.save
+  	redirect_to '/books'
   end
 
-  def index
-  end
 
   def show
   end
@@ -19,9 +19,9 @@ class BooksController < ApplicationController
   def edit
   end
 
-  private
   # ストロングパラメータ
+  private
   def book_params
-    params.permit(:title, :body)
+    params.require(:book).permit(:title, :body)
   end
 end
